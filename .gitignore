@@ -17,6 +17,7 @@ chroma_db/
 # Local chat history, recordings & personal drafts
 chat_history.json
 *.mp4
+!Spring_5_p2_3_4.mp4
 I’ve been building a Course Q&A ass.txt
 
 # Secrets & scratch API test scripts
