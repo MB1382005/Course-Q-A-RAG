@@ -1,0 +1,832 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap');
+
+/* =========================================================
+   Course Q&A — corrected stylesheet
+   Designed to work with the original app.py class names.
+   ========================================================= */
+
+.stApp {
+  --bg: #E6F7EE;
+  --dots: #B4DCC6;
+  --paper: #FFFFFF;
+  --paper2: #F4FFF8;
+  --ink: #1D1B3A;
+  --soft: #5B5A78;
+  --line: #1D1B3A;
+  --shadow: #1D1B3A;
+  --pink: #FF7EB6;
+  --yellow: #FFD84D;
+  --blue: #6DB6FF;
+  --green: #58DDA6;
+  --orange: #FF9F5A;
+  --user: #D3E9FF;
+  --dark-ink: #1D1B3A;
+
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--dots) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  color: var(--ink);
+}
+
+/* Dark theme is activated by the marker inserted by app.py. */
+.stApp:has(.theme-dark) {
+  --bg: #1B1A3A;
+  --dots: #2C2A5C;
+  --paper: #272552;
+  --paper2: #211F47;
+  --ink: #F4F2FF;
+  --soft: #B8B5DA;
+  --line: #8E8BF2;
+  --shadow: #0B0A20;
+  --user: #2F4F7D;
+}
+
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+[data-testid="stHeader"] {
+  background: transparent !important;
+  color: var(--ink) !important;
+}
+
+[data-testid="stBottom"],
+[data-testid="stBottom"] > div {
+  background: var(--bg) !important;
+}
+
+.block-container {
+  max-width: 1000px;
+  padding: 2rem 1.5rem 7rem;
+}
+
+.stApp,
+.stApp p,
+.stApp li,
+.stApp label,
+.stApp button,
+.stApp textarea,
+.stApp summary,
+.stApp input {
+  font-family: 'Cairo', 'Baloo 2', sans-serif !important;
+}
+
+:where(.stApp) [data-testid="stMarkdownContainer"],
+:where(.stApp) [data-testid="stMarkdownContainer"] p,
+:where(.stApp) [data-testid="stCaptionContainer"],
+:where(.stApp) label {
+  color: var(--ink);
+}
+
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] p {
+  overflow-wrap: anywhere;
+}
+
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+  unicode-bidi: plaintext;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+  background: var(--paper2) !important;
+  border-inline-end: 3px solid var(--line);
+}
+
+section[data-testid="stSidebar"] > div {
+  padding: .8rem .9rem !important;
+}
+
+/* Compact sidebar spacing so its controls fit comfortably on shorter screens. */
+section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+  gap: .55rem !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+  margin-bottom: .25rem;
+  line-height: 1.4;
+}
+
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+  margin: .2rem 0 .35rem !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stAlert"] {
+  margin: .15rem 0 .35rem !important;
+  padding: .65rem .8rem !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stAlert"] p {
+  margin: .15rem 0 !important;
+  line-height: 1.45;
+}
+
+section[data-testid="stSidebar"] hr {
+  border-color: var(--line) !important;
+  opacity: .35;
+  margin: .55rem 0;
+}
+
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+  color: var(--ink) !important;
+}
+
+/* Streamlit renders st.info as a tinted card; keep its text readable in both themes. */
+section[data-testid="stSidebar"] [data-testid="stAlert"] {
+  background: var(--paper) !important;
+  border: 2px solid var(--line) !important;
+  border-radius: 16px !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stAlert"] p,
+section[data-testid="stSidebar"] [data-testid="stAlert"] strong,
+section[data-testid="stSidebar"] [data-testid="stAlert"] div,
+section[data-testid="stSidebar"] [data-testid="stAlert"] span {
+  color: var(--ink) !important;
+  opacity: 1 !important;
+}
+
+/* Use the theme text color for Streamlit's course info card in light mode. */
+.stApp:not(:has(.theme-dark)) section[data-testid="stSidebar"] [data-testid="stAlert"] {
+  --alert-ink: #1D1B3A;
+}
+
+.stApp:not(:has(.theme-dark)) section[data-testid="stSidebar"] [data-testid="stAlert"] * {
+  color: #1D1B3A !important;
+}
+
+.sidebar-label,
+.tool-label {
+  color: var(--soft);
+  font-size: .78rem;
+}
+
+.tool-value {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: .92rem;
+  overflow-wrap: anywhere;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: .1rem .6rem;
+  background: var(--green);
+  color: var(--dark-ink) !important;
+  border: 2px solid var(--dark-ink);
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 800;
+}
+
+section[data-testid="stSidebar"] [data-baseweb="select"] > div {
+  color: var(--ink) !important;
+  background: var(--paper) !important;
+  border-color: var(--line) !important;
+}
+
+section[data-testid="stSidebar"] [role="option"] {
+  color: var(--ink) !important;
+  background: var(--paper) !important;
+}
+
+/* Optional brand/tool classes retained for compatibility. */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .9rem;
+}
+
+.brand-mark {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  background: var(--yellow);
+  border: 3px solid var(--line);
+  border-radius: 50%;
+  box-shadow: 3px 3px 0 var(--shadow);
+  transform: rotate(-6deg);
+}
+
+.brand-name {
+  font-family: 'Baloo 2', 'Cairo', sans-serif !important;
+  font-weight: 800;
+  font-size: 1.45rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.brand-tag {
+  color: var(--soft);
+  font-size: .82rem;
+  margin-top: .2rem;
+}
+
+.tool-row {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  padding: .4rem 0;
+}
+
+.tool-icon {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  border: 2px solid var(--dark-ink);
+  border-radius: 12px;
+  color: var(--dark-ink);
+}
+
+.c-blue { background: var(--blue); }
+.c-pink { background: var(--pink); }
+.c-green { background: var(--green); }
+.c-yellow { background: var(--yellow); }
+.c-orange { background: var(--orange); }
+
+/* Main heading: matches app.py .app-heading markup. */
+.app-heading {
+  margin: .2rem 0 1.2rem;
+}
+
+.app-heading h1 {
+  font-family: 'Baloo 2', 'Cairo', sans-serif !important;
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.05;
+  margin: 0;
+  padding: 0;
+  color: var(--ink);
+}
+
+.app-heading p {
+  margin: .5rem 0 0;
+  color: var(--soft);
+  font-size: 1.02rem;
+}
+
+/* Course strip: matches app.py .course-strip markup. */
+.course-strip {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .7rem 1rem;
+  margin: 0 0 1.4rem;
+  background: var(--yellow);
+  border: 3px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+.course-mark {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--dark-ink);
+  background: #FFFFFF;
+  border: 2px solid var(--dark-ink);
+  border-radius: 12px;
+}
+
+.course-name {
+  color: var(--dark-ink) !important;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.course-detail {
+  color: var(--dark-ink) !important;
+  opacity: .78;
+  font-size: .85rem;
+}
+
+/* Keep old class names supported if used by another version of app.py. */
+.course-card {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .7rem 1rem;
+  margin: 0 0 1.4rem;
+  background: var(--yellow);
+  border: 3px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+.course-icon {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  background: #fff;
+  border: 2px solid var(--dark-ink);
+  border-radius: 12px;
+}
+
+.course-title {
+  color: var(--dark-ink) !important;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.course-meta {
+  color: var(--dark-ink) !important;
+  opacity: .75;
+  font-size: .85rem;
+}
+
+/* Section and empty state */
+.section-heading {
+  font-family: 'Baloo 2', 'Cairo', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin: .6rem 0 .5rem;
+}
+
+.empty-state {
+  padding: 1.5rem 1.4rem;
+  margin-bottom: 1.1rem;
+  background: var(--paper);
+  border: 3px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+.empty-icon,
+.empty-icons {
+  font-size: 2rem;
+  letter-spacing: .4rem;
+  margin-bottom: .4rem;
+}
+
+.empty-state h3 {
+  font-family: 'Baloo 2', 'Cairo', sans-serif !important;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--ink);
+  margin: 0 0 .25rem;
+  padding: 0;
+}
+
+.empty-state p {
+  color: var(--soft);
+  margin: 0;
+  max-width: 34rem;
+  line-height: 1.7;
+}
+
+/* Buttons */
+.stButton > button {
+  min-height: 3rem;
+  height: auto;
+  white-space: normal;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border: 2.5px solid var(--line) !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  box-shadow: 3px 3px 0 var(--shadow);
+  transition: transform .08s, box-shadow .08s, background .08s;
+}
+
+.stButton > button * {
+  color: inherit !important;
+}
+
+.stButton > button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--shadow);
+  background: var(--yellow) !important;
+  color: var(--dark-ink) !important;
+}
+
+.stButton > button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--shadow);
+}
+
+section[data-testid="stSidebar"] .stButton > button {
+  background: var(--orange) !important;
+  color: var(--dark-ink) !important;
+}
+
+/* Chat messages */
+div[data-testid="stChatMessage"] {
+  width: min(100%, 1080px);
+  max-width: 1080px;
+  margin-inline: auto !important;
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border: 3px solid var(--line) !important;
+  border-radius: 20px !important;
+  padding: .8rem 1rem !important;
+  margin: 1rem 0 !important;
+  box-shadow: 4px 4px 0 var(--shadow) !important;
+}
+
+div[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+  background: var(--user) !important;
+}
+
+div[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] {
+  line-height: 1.85;
+  font-size: 1.02rem;
+  color: var(--ink) !important;
+}
+
+.message-content,
+.answer-content {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  unicode-bidi: plaintext;
+}
+
+.message-content[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Cairo', sans-serif !important;
+}
+
+.message-content[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+.ltr-term {
+  display: inline;
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+  font-family: 'Inter', 'Cairo', sans-serif !important;
+  font-size: .96em;
+  font-weight: 600;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.reasoning-summary {
+  margin-bottom: .55rem;
+  color: var(--ink);
+  line-height: 1.75;
+}
+
+.reasoning-excerpt {
+  max-height: 15rem;
+  overflow: auto;
+  padding: .75rem .85rem;
+  color: var(--ink);
+  background: var(--paper2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+[data-testid="stChatMessageAvatarUser"],
+[data-testid="stChatMessageAvatarAssistant"],
+[data-testid="stChatMessageAvatarCustom"] {
+  width: 2.6rem;
+  height: 2.6rem;
+  font-size: 1.3rem;
+  background: var(--yellow) !important;
+  border: 2.5px solid var(--line);
+  border-radius: 50% !important;
+}
+
+div[data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"])
+[data-testid="stChatMessageAvatarUser"] {
+  background: var(--pink) !important;
+}
+
+/* Sources expander and source rows */
+details[data-testid="stExpander"] {
+  background: var(--paper2) !important;
+  border: 2.5px solid var(--line) !important;
+  border-radius: 16px !important;
+  margin-top: .7rem;
+  overflow: hidden;
+}
+
+details[data-testid="stExpander"] summary {
+  color: var(--ink) !important;
+  font-weight: 800;
+}
+
+.source-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  padding: .2rem 0;
+}
+
+.source-row {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .35rem .75rem;
+  background: var(--green);
+  border: 2px solid var(--dark-ink);
+  border-radius: 999px;
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.source-name {
+  color: var(--dark-ink) !important;
+  font-weight: 700;
+  font-size: .88rem;
+  overflow-wrap: anywhere;
+}
+
+.source-page {
+  color: var(--dark-ink) !important;
+  font-size: .76rem;
+  font-weight: 700;
+  background: #fff;
+  border: 1.5px solid var(--dark-ink);
+  border-radius: 999px;
+  padding: 0 .5rem;
+}
+
+.source-course {
+  margin-top: .12rem;
+  color: var(--soft);
+  font-size: .72rem;
+  font-weight: 600;
+}
+
+/* Performance metrics */
+.metric-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin: .8rem 0 .2rem;
+}
+
+.metric-card {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .4rem .8rem;
+  border: 2.5px solid var(--dark-ink);
+  border-radius: 14px;
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+.metric-card:nth-child(1) { background: var(--blue); }
+.metric-card:nth-child(2) { background: var(--pink); }
+.metric-card:nth-child(3) { background: var(--yellow); }
+
+.metric-icon {
+  font-size: 1.15rem;
+}
+
+.metric-label {
+  color: var(--dark-ink) !important;
+  font-size: .72rem;
+  font-weight: 600;
+}
+
+.metric-value {
+  color: var(--dark-ink) !important;
+  font-weight: 800;
+  font-size: .95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Streamlit metric widgets, used by the CSS-free app.py variant. */
+[data-testid="stMetric"] {
+  background: var(--paper);
+  border: 2.5px solid var(--line);
+  border-radius: 14px;
+  padding: .65rem .8rem;
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+[data-testid="stMetricLabel"],
+[data-testid="stMetricValue"] {
+  color: var(--ink) !important;
+}
+
+/* Chat input — keep the pink focus ring on the outer shell only.
+   Avoid outlining the inner textarea, which caused the double border. */
+div[data-testid="stChatInput"] {
+  background: var(--paper) !important;
+  border: 3px solid var(--line) !important;
+  border-radius: 18px !important;
+  box-shadow: 4px 4px 0 var(--shadow) !important;
+}
+
+div[data-testid="stChatInput"]:focus-within {
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--pink) 50%, transparent),
+    4px 4px 0 var(--shadow) !important;
+}
+
+div[data-testid="stChatInput"] [data-baseweb="textarea"],
+div[data-testid="stChatInput"] [data-baseweb="base-input"],
+div[data-testid="stChatInput"] textarea {
+  background: transparent !important;
+  color: var(--ink) !important;
+  -webkit-text-fill-color: var(--ink) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+div[data-testid="stChatInput"] textarea::placeholder {
+  color: var(--soft) !important;
+  -webkit-text-fill-color: var(--soft) !important;
+  opacity: 1 !important;
+}
+
+div[data-testid="stChatInput"] textarea {
+  direction: auto !important;
+  text-align: start !important;
+  unicode-bidi: plaintext;
+}
+
+.answer-content {
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+  unicode-bidi: plaintext;
+}
+
+.answer-content strong {
+  color: var(--ink) !important;
+  font-weight: 800;
+}
+
+div[data-testid="stChatInput"] textarea,
+div[data-testid="stChatInput"] [data-baseweb="textarea"] {
+  caret-color: var(--ink) !important;
+}
+
+button[data-testid="stChatInputSubmitButton"] {
+  background: var(--pink) !important;
+  color: var(--dark-ink) !important;
+  border: 2px solid var(--line) !important;
+  border-radius: 12px !important;
+}
+
+button[data-testid="stChatInputSubmitButton"] svg {
+  color: var(--dark-ink) !important;
+  fill: var(--dark-ink) !important;
+}
+
+/* Alerts and keyboard focus */
+[data-testid="stAlert"] {
+  border: 2.5px solid var(--line);
+  border-radius: 16px;
+}
+
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--pink) !important;
+  outline-offset: 2px;
+}
+
+/* Responsive layout */
+@media (max-width: 700px) {
+  .block-container {
+    padding: 1rem .8rem 6rem;
+  }
+
+  .app-heading h1 {
+    font-size: 2rem;
+  }
+
+  .course-strip {
+    align-items: flex-start;
+  }
+
+  .metric-grid {
+    gap: .5rem;
+  }
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Final light-theme contrast overrides for Streamlit's nested BaseWeb surfaces. */
+.stApp:has(.theme-light) section[data-testid="stSidebar"] [data-testid="stAlert"],
+.stApp:has(.theme-light) section[data-testid="stSidebar"] [data-testid="stAlert"] > div,
+.stApp:has(.theme-light) section[data-testid="stSidebar"] [data-testid="stAlert"] [data-testid] {
+  background-color: #FFFFFF !important;
+}
+
+.stApp:has(.theme-light) section[data-testid="stSidebar"] [data-testid="stAlert"],
+.stApp:has(.theme-light) section[data-testid="stSidebar"] [data-testid="stAlert"] * {
+  color: #1D1B3A !important;
+  -webkit-text-fill-color: #1D1B3A !important;
+  opacity: 1 !important;
+}
+
+.stApp:has(.theme-light) div[data-testid="stChatInput"],
+.stApp:has(.theme-light) div[data-testid="stChatInput"] > div,
+.stApp:has(.theme-light) div[data-testid="stChatInput"] [data-baseweb="textarea"],
+.stApp:has(.theme-light) div[data-testid="stChatInput"] [data-baseweb="base-input"] {
+  background-color: #FFFFFF !important;
+}
+
+.stApp:has(.theme-light) div[data-testid="stChatInput"] textarea {
+  color: #1D1B3A !important;
+  -webkit-text-fill-color: #1D1B3A !important;
+  caret-color: #1D1B3A !important;
+}
+
+.stApp:has(.theme-light) div[data-testid="stChatInput"] textarea::placeholder {
+  color: #5B5A78 !important;
+  -webkit-text-fill-color: #5B5A78 !important;
+  opacity: 1 !important;
+}
+
+/* Compact, consistent timing badges. */
+.metric-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  width: 100%;
+  margin: .65rem auto .15rem;
+  padding-top: .55rem;
+  border-top: 1px solid var(--line);
+}
+
+.metric-card {
+  display: grid;
+  grid-template-columns: 1.35rem auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: .45rem;
+  width: 132px;
+  min-width: 132px;
+  min-height: 54px;
+  padding: .45rem .55rem;
+  background: var(--paper2) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+
+.metric-icon {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: grid;
+  width: 1.35rem;
+  height: 1.35rem;
+  place-items: center;
+  background: var(--paper);
+  border-radius: 8px;
+  font-size: .85rem;
+}
+
+.metric-label {
+  grid-column: 2;
+  grid-row: 1;
+  color: var(--soft) !important;
+  font-size: .66rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.metric-value {
+  grid-column: 2;
+  grid-row: 2;
+  color: var(--ink) !important;
+  font-size: .86rem;
+  font-weight: 800;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 520px) {
+  .metric-grid { justify-content: center; }
+  .metric-card { flex: 1 1 112px; width: 112px; min-width: 112px; }
+}

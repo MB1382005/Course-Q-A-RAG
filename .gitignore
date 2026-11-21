@@ -1,0 +1,25 @@
+# Virtual environments & Python cache
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local vector database
+chroma_db/
+
+# Local chat history, recordings & personal drafts
+chat_history.json
+*.mp4
+I’ve been building a Course Q&A ass.txt
+
+# Secrets & scratch API test scripts
+.env
+.env.*
+apitest.py
